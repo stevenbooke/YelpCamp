@@ -16,18 +16,22 @@ var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
 var port = process.env.PORT || 3000;
 
+//run command in terminal "export DATABASEURL=mongodb://localhost:27017/yelp_camp"
+//the line under here is so we can develop locally and not interfere with db that heroku uses
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });  
 
-//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true }); FOR LOCAL SETUP
+//FOR LOCAL SETUP AND NOT USING process.env variable
+//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true }); 
 
-//FOR HEROKU SETUP
-mongoose.connect('mongodb+srv://devsprout:devsprout@cluster0-ygqbb.mongodb.net/test?retryWrites=true&w=majority', {
-	useNewUrlParser: true,
-	useCreateIndex: true
-}).then(() => {
-	console.log('Connected to Db');
-	   }).catch(err => {
-	console.log('ERROR', err.message);
-});
+//FOR HEROKU SETUP NOT USING process.env variable
+// mongoose.connect('mongodb+srv://devsprout:devsprout@cluster0-ygqbb.mongodb.net/test?retryWrites=true&w=majority', {
+// 	useNewUrlParser: true,
+// 	useCreateIndex: true
+// }).then(() => {
+// 	console.log('Connected to Db');
+// 	   }).catch(err => {
+// 	console.log('ERROR', err.message);
+// });
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
