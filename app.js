@@ -16,7 +16,18 @@ var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
 
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true }); FOR LOCAL SETUP
+
+//FOR HEROKU SETUP
+mongoose.connect('mongodb+srv://devsprout:devsprout@cluster0-ygqbb.mongodb.net/test?retryWrites=true&w=majority', {
+	useNewUrlParser: true,
+	useCreateIndex: true
+}).then(() => {
+	console.log('Connected to Db');
+	   }).catch(err => {
+	console.log('ERROR', err.message);
+});
+
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
