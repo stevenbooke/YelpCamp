@@ -14,6 +14,7 @@ var User = require("./models/user");
 var campgroundRoutes = require("./routes/campgrounds");
 var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
+var port = process.env.PORT || 3000;
 
 
 //mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true }); FOR LOCAL SETUP
@@ -64,6 +65,6 @@ app.use(campgroundRoutes);
 app.use(commentRoutes);
 app.use(indexRoutes);
 
-app.listen(3000, () => {
+app.listen(port, () => {
 	console.log("YelpCamp is up and running");
 });
